@@ -26,7 +26,7 @@ $app->group(['middleware' => []], function () use ($app) {
     $app->post('/users/login', ['uses' => 'UsersController@getToken']);
 });
 
-$app->group(['middleware' => ['auth']], function () use ($app) {
+$app->group(['middleware' => [/*'auth'*/]], function () use ($app) {
 // Users
     $app->get('/users', ['uses' => 'UsersController@getAll']);
     $app->get('/users/{id}', ['uses' => 'UsersController@getUser']);
@@ -35,5 +35,8 @@ $app->group(['middleware' => ['auth']], function () use ($app) {
 
     $app->put('/users/{id}', ['uses' => 'UsersController@updateUser']);
     $app->delete('/users/{id}', ['uses' => 'UsersController@deleteUser']);
+
+    $app->post('/bookings', ['uses' => 'BookingsController@getAll']);
+    $app->get('/time', ['uses' => 'BookingsController@getTime']);
 });
 
